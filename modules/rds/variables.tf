@@ -1,5 +1,18 @@
-variable "db_username" {}
-variable "db_password" {}
-variable "security_group_id" {}
-variable "subnet_id_1" {}
-variable "subnet_id_2" {}
+variable "private_subnets" {
+  type = list(string)
+}
+
+variable "name" {
+  type = string
+}
+
+variable "rds_security_group_ids" {
+  type = list(string)
+}
+
+variable "db_username" {
+  type = string
+}
+
+variable "database_name" {
+}
