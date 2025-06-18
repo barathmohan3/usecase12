@@ -1,8 +1,0 @@
-region = "us-east-1"
-db_username = "bmware"
-db_password = "Password@123"
-key_name = "first"
-security_group_id = "sg-0d9539df94ae1c4b4"
-subnet_id_1 = "subnet-01e2850ffc7eeab2e"
-subnet_id_2 = "subnet-0d8d6b58ec7ce9171"
-ec2_subnet_id = "subnet-0e5a70028bafbced2"
