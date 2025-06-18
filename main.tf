@@ -1,31 +1,19 @@
-provider "aws" {
-  region = var.region
+module "vpc" {
+  source = "./modules/vpc"
+  name           = var.name
+  vpc_cidr_block = var.vpc_cidr_block
 }
 
-module "iam" {
-  source = "./modules/iam"
-  region = var.region
-}
-
-module "secrets" {
-  source = "./modules/secrets"
-  db_username = var.db_username
-  db_password = var.db_password
+module "sg_group" {
+  source     = "./modules/sg_group"
+  vpc_id     = module.vpc.vpc_id
 }
 
 module "rds" {
-  source = "./modules/rds"
-  db_username = var.db_username
-  db_password = var.db_password
-  security_group_id = var.security_group_id
-  subnet_id_1 = var.subnet_id_1
-  subnet_id_2 = var.subnet_id_2
-}
-
-module "ec2" {
-  source = "./modules/ec2"
-  ec2_subnet_id = var.ec2_subnet_id
-  security_group_id = var.security_group_id
-  key_name = var.key_name
-  iam_instance_profile = module.iam.instance_profile_name
+  source               = "./modules/rds"
+  name                 = var.name
+  private_subnets      = module.vpc.private_subnets
+  db_username          = var.db_username
+  database_name        = var.database_name
+  rds_security_group_ids  = [module.sg_group.rds_security_group_aurora_id]
 }
