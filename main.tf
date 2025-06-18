@@ -4,6 +4,7 @@ provider "aws" {
 
 module "iam" {
   source = "./modules/iam"
+  region = var.region
 }
 
 module "secrets" {
