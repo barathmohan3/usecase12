@@ -1,4 +1,3 @@
-
 name: Provision Infra using Terraform via EC2
 
 on:
@@ -36,6 +35,11 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.10.5
+
+      - name: Set up Node js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18   
 
       - name: Terraform format
         run: terraform fmt
