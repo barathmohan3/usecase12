@@ -33,7 +33,3 @@ resource "aws_rds_cluster_instance" "aurora_instances" {
 output "aurora_cluster_endpoint" {
   value = aws_rds_cluster.aurora_mysql.endpoint
 }
-
-#output "aurora_cluster_instance_endpoint" {
-#  value = aws_rds_cluster.aurora_instances.endpoint
-#}
